@@ -1,0 +1,17 @@
+{
+  "servers": {
+    "photoshop-com-local-stdio": {
+      "type": "stdio",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": [
+        "${workspaceFolder}/src/server.py",
+        "--transport",
+        "stdio"
+      ]
+    },
+    "photoshop-com-local-http": {
+      "type": "http",
+      "url": "http://127.0.0.1:8765/mcp"
+    }
+  }
+}

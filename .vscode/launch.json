@@ -1,0 +1,20 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug MCP Server (Streamable HTTP)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/server.py",
+      "args": ["--transport", "streamable-http", "--port", "8765"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Debug On-Demand Tray Launcher",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/tray_launcher.py",
+      "console": "integratedTerminal"
+    }
+  ]
+}

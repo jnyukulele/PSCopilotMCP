@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/copilot/plugin/v2.2/schema.json",
+  "schema_version": "v2.2",
+  "name_for_human": "Photoshop Local COM MCP",
+  "description_for_human": "ローカルのPhotoshopのPSDレイヤー解析と画像書き出しを行います。",
+  "description_for_model": "Windows COM経由でローカルPhotoshopのPSDレイヤー構造解析と画像書き出しを実行するMCPプラグイン。引数はすべてプリミティブ型です。",
+  "functions": [
+    {
+      "name": "inspect_psd_structure",
+      "description": "PSDファイル内部の画像・レイヤー一覧、各パーツの座標(x, y)・サイズ(width, height)・表示状態・テキスト内容を解析します。"
+    },
+    {
+      "name": "export_psd_internal_images",
+      "description": "PSD内部の画像レイヤーを切り出してフォルダへ一括書き出しします。"
+    },
+    {
+      "name": "export_psd_full_preview",
+      "description": "現在Photoshopで開いているPSD全体の見た目（統合画像）を1枚の画像として書き出します。"
+    },
+    {
+      "name": "get_local_workstation_status",
+      "description": "接続中のユーザーPC名、ログインユーザー名、既定の書き出し先フォルダパスを確認します。"
+    }
+  ],
+  "runtimes": [
+    {
+      "type": "RemoteMCPServer",
+      "spec": {
+        "url": "https://YOUR_TUNNEL_OR_GATEWAY_DOMAIN/mcp"
+      },
+      "run_for_functions": [
+        "inspect_psd_structure",
+        "export_psd_internal_images",
+        "export_psd_full_preview",
+        "get_local_workstation_status"
+      ]
+    }
+  ]
+}

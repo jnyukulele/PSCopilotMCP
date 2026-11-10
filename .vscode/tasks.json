@@ -1,0 +1,44 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "1. 環境構築 (uv / venv & pip install)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "$ErrorActionPreference = 'Stop'; python -m venv .venv; & .\\.venv\\Scripts\\python.exe -m pip install -r requirements.txt"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "2. MCPサーバー起動 (Streamable HTTP :8765)",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv/Scripts/python.exe",
+      "args": ["src/server.py", "--transport", "streamable-http", "--port", "8765"],
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "3. M365スキーマ互換性テスト (pytest)",
+      "type": "shell",
+      "command": "${workspaceFolder}/.venv/Scripts/pytest.exe",
+      "args": ["tests/test_schema_m365.py", "-v"],
+      "problemMatcher": []
+    },
+    {
+      "label": "4. 単一EXEビルド (PyInstaller)",
+      "type": "shell",
+      "command": "powershell",
+      "args": ["-ExecutionPolicy", "Bypass", "-File", "scripts/build_exe.ps1"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
